@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stored responses · Student Feedback</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#results">Skip to responses</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="mark">SF</span>
+      <span>
+        <strong>Student Feedback</strong>
+        <span>Academic office</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/">Submit</a>
+      <a href="/responses" aria-current="page">Responses</a>
+    </nav>
+  </header>
+  <main>
+    <section class="lede">
+      <p class="eyebrow">Retrieved from the database</p>
+      <h1>Stored responses</h1>
+      <p id="retrieved">Loading records…</p>
+      <div class="storage-pill" id="storage"><i></i><span>Checking storage…</span></div>
+    </section>
+
+    <section class="stats" id="stats" aria-label="Summary"></section>
+    <section class="bars" id="bars" aria-label="Average by department"></section>
+
+    <form class="filters" id="filters">
+      <div class="field">
+        <label for="q">Search</label>
+        <input id="q" name="q" placeholder="Course, faculty, or comment">
+      </div>
+      <div class="field">
+        <label for="department">Department</label>
+        <select id="department" name="department"><option value="">All departments</option></select>
+      </div>
+      <div class="field">
+        <label for="minRating">Minimum average</label>
+        <select id="minRating" name="minRating">
+          <option value="">Any</option>
+          <option value="3">3 and above</option>
+          <option value="4">4 and above</option>
+          <option value="5">5 only</option>
+        </select>
+      </div>
+    </form>
+
+    <div id="message" hidden></div>
+    <section class="cards" id="results"></section>
+
+    <details class="office panel">
+      <summary>Remove a response</summary>
+      <p>Deletion uses the academic office key from the server environment. The demo key is <strong>admin123</strong> until <code>ADMIN_KEY</code> is changed.</p>
+      <div class="inline">
+        <input id="office-key" type="password" autocomplete="off" placeholder="Office key">
+        <button class="primary" type="button" id="unlock">Unlock</button>
+      </div>
+    </details>
+  </main>
+  <footer>Raw retrieval: <a href="/api/feedback">/api/feedback</a> · Summary: <a href="/api/stats">/api/stats</a></footer>
+  <script src="/responses.js"></script>
+</body>
+</html>

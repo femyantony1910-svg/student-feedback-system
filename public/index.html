@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit feedback · Student Feedback</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#form">Skip to the form</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="mark">SF</span>
+      <span>
+        <strong>Student Feedback</strong>
+        <span>Academic office</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/" aria-current="page">Submit</a>
+      <a href="/responses">Responses</a>
+    </nav>
+  </header>
+  <main>
+    <section class="lede">
+      <p class="eyebrow">Course and campus</p>
+      <h1>Tell the college how this term is going.</h1>
+      <p>Each submission is stored in the database. The responses page reads those records back, including ratings, comments, and department totals.</p>
+      <div class="storage-pill" id="storage"><i></i><span>Checking storage…</span></div>
+    </section>
+
+    <section class="panel" id="form">
+      <form id="feedback-form" novalidate>
+        <div class="grid two">
+          <div class="field">
+            <label for="name">Student name</label>
+            <input id="name" name="name" autocomplete="name" maxlength="80" required>
+          </div>
+          <div class="field">
+            <label for="roll">Roll number</label>
+            <input id="roll" name="roll" maxlength="20" autocapitalize="characters" required>
+          </div>
+          <div class="field">
+            <label for="department">Department</label>
+            <select id="department" name="department" required></select>
+          </div>
+          <div class="field">
+            <label for="semester">Semester</label>
+            <select id="semester" name="semester" required></select>
+          </div>
+          <div class="field">
+            <label for="course">Course or subject</label>
+            <input id="course" name="course" maxlength="120" required placeholder="Data Structures">
+          </div>
+          <div class="field">
+            <label for="faculty">Faculty name <span style="font-weight:400;color:#5e675f">(optional)</span></label>
+            <input id="faculty" name="faculty" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="year">Academic year</label>
+            <select id="year" name="academicYear" required></select>
+          </div>
+        </div>
+
+        <label class="check">
+          <input id="anonymous" type="checkbox">
+          <span>Submit without my name and roll number. The comment and ratings are still stored.</span>
+        </label>
+
+        <div>
+          <p class="field-label">Ratings</p>
+          <p class="hint">1 is poor and 5 is excellent. The average is calculated when the response is saved.</p>
+          <div class="ratings" id="ratings"></div>
+        </div>
+
+        <div class="field">
+          <label for="comments">What should the department know?</label>
+          <textarea id="comments" name="comments" maxlength="2000" required placeholder="Lectures, labs, assessments, or campus facilities."></textarea>
+        </div>
+        <div class="field">
+          <label for="suggestions">Suggestion <span style="font-weight:400;color:#5e675f">(optional)</span></label>
+          <textarea id="suggestions" name="suggestions" maxlength="2000"></textarea>
+        </div>
+
+        <div id="message" hidden></div>
+        <div class="actions">
+          <button class="primary" type="submit" id="submit">Submit feedback</button>
+          <a class="button ghost" href="/responses">View stored responses</a>
+        </div>
+      </form>
+
+      <div class="success" id="success" hidden>
+        <h2>Feedback saved.</h2>
+        <p>Reference <span class="ref" id="saved-id"></span> is in the <span id="saved-store"></span>. Open the responses page to retrieve it.</p>
+        <div class="actions">
+          <a class="button primary" id="view-saved" href="/responses">Retrieve this response</a>
+          <button class="ghost" type="button" id="another">Submit another</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>Retrieval endpoint: <a href="/api/feedback">/api/feedback</a></footer>
+  <script src="/app.js"></script>
+</body>
+</html>
